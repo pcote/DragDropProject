@@ -24,6 +24,7 @@ $(function(){
     var dropHandler = function(evt){
         evt.preventDefault();
         var files = evt.originalEvent.dataTransfer.files;
+
         var formData = new FormData();
         formData.append("file2upload", files[0]);
 
@@ -37,7 +38,7 @@ $(function(){
 
         var promise = $.ajax(req);
         promise.then(fileUploadSuccess, fileUploadFail);
-    }
+    };
 
     var dropHandlerSet = {
         dragover: dragHandler,
@@ -46,5 +47,5 @@ $(function(){
 
     $(".droparea").on(dropHandlerSet);
 
-    fileUploadSuccess(false);
+    fileUploadSuccess(false); // called to ensure that we have initial data
 });

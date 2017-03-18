@@ -29,7 +29,15 @@ def send_file():
 @app.route("/filenames", methods=["GET"])
 def get_filenames():
     filenames = os.listdir("uploads/")
-    modify_time_sort = lambda f: os.stat("uploads/{}".format(f)).st_atime
+
+    #modify_time_sort = lambda f: os.stat("uploads/{}".format(f)).st_atime
+
+    def modify_time_sort(file_name):
+        file_path = "uploads/{}".format(file_name)
+        file_stats = os.stat(file_path)
+        last_access_time = file_stats.st_atime
+        return last_access_time
+
     filenames = sorted(filenames, key=modify_time_sort)
     return_dict = dict(filenames=filenames)
     return jsonify(return_dict)

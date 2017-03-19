@@ -23,7 +23,7 @@ def send_file():
     with open(save_path, "r") as f:
         pass
 
-    return "okay did something"
+    return "successful_upload"
 
 
 @app.route("/filenames", methods=["GET"])
